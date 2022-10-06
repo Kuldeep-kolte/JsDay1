@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 2</title>
+</head>
+
+<body>
+    <h1>Day 2</h1>
+    <h4>Q.1 What is creation phase and execution phase?</h4>
+    <ul>
+        <li>Each execution context has two phases: the creation phase and the execution phase.</li>
+        <li>During the creation phase of the execution context, JS allocates memory space for the functions and
+            variables.</li>
+        <li>In case of functions, the whole function body is stored but in case of the variables, it is declared and
+            assigned a default value undefined. This phenomena is called Hoisting.</li>
+        <li>In execution phase, JS executes our code line by line and assigns the value to the variables. </li>
+    </ul>
+    <h4>Q.2 What are objects in javascript?</h4>
+    <ul>
+        <li>JavaScript objects are containers for named values called properties. </li>
+        <li>Objects are variables too. But objects can contain many values. </li>
+        <li>This code assigns many values (Fiat, 500, white) to a variable named car:</li>
+        <pre>const car = 
+            {type:"Fiat",
+             model:"500", 
+             color:"white"
+            };</pre>
+        <li>The values are written as name:value pairs (name and value separated by a colon).</li>
+        <li>The name:values pairs in JavaScript objects are called properties:</li>
+        <li>It is a common practice to declare objects with the const keyword.</li>
+        <li>There are three different ways of creating object</li>
+        <ol>
+            <li>Object Literal:</li>
+            <pre>
+                let obj = {
+                        name : 'Hardik',
+                        age  : 22
+                    }
+                console.log(obj.name);
+            </pre>
+            <li>creating instance of object</li>
+            <pre>
+                let obj1 = new Object();
+                obj1.name = "John";
+                obj1.age = 25;
+            </pre>
+            <li>Object Constructor or Function Constructor</li>
+            <pre>
+                function obj(name,age){
+                    this.name = name;
+                    this.age;
+                }
+                let obj2 = new Obj("keshav",24)
+            </pre>
+        </ol>
+    </ul>
+    <h4>Q.3 What are function constructors?</h4>
+    <ul>
+        <li>Every object in JavaScript has a built-in property, which is called its prototype. The prototype is itself
+            an object, so the prototype will have its own prototype, making what's called a prototype chain. The chain
+            ends when we reach a prototype that has null for its own prototype.</li>
+        <li>Function is said to be constructor when it is used to initialize and create a instance of class that is also
+            called as "object"</li>
+        <li>It is considered good practice to name constructor functions with an upper-case first letter.</li>
+        <li>In a constructor function this does not have a value. It is a substitute for the new object. The value of
+            this will become the new object when a new object is created.</li>
+        <pre>
+                function Person(first, last, age, eye) {
+                    this.firstName = first;
+                    this.lastName = last;
+                    this.age = age;
+                    this.eyeColor = eye;
+                  }
+                  const myFather = new Person("John", "Doe", 50, "blue");
+            </pre>
+        <li>The way to create an "object type", is to use an object constructor function.
+            In the example above, function Person() is an object constructor function.
+            Objects of the same type are created by calling the constructor function with the new keyword</li>
+    </ul>
+    <h4>Q.4 Explain prototypes</h4>
+    <ul>
+        <li>prototype is itself an object that have prototype object present inside it</li>
+        <li>All JavaScript objects inherit properties and methods from a prototype.</li>
+        <pre>
+            function Person(first, last, age, eyecolor) {
+                this.firstName = first;
+                this.lastName = last;
+                this.age = age;
+                this.eyeColor = eyecolor;
+              }
+              
+              const myFather = new Person("John", "Doe", 50, "blue");
+              const myMother = new Person("Sally", "Rally", 48, "green");
+        </pre>
+        <li>you can not add a new property to an existing object constructor.To add a new property to a constructor, you
+            must add it to the constructor function</li>
+        <li>The JavaScript prototype property allows you to add new properties to object constructors</li>
+        <pre>
+            function Person(first, last, age, eyecolor) {
+                this.firstName = first;
+                this.lastName = last;
+                this.age = age;
+                this.eyeColor = eyecolor;
+              }
+              
+              Person.prototype.nationality = "English";
+        </pre>
+    </ul>
+    <h4>Q.5 What is prototype chain</h4>
+    <ul>
+        <li>If a prototype value is changed, then all the new objects will have the changed property value. All the
+            previously created objects will have the previous value. For example,</li>
+        <pre>
+            // constructor function
+function Person() {
+    this.name = 'John'
+}
+
+// add a property
+Person.prototype.age = 20;
+
+// creating an object
+const person1 = new Person();
+
+console.log(person1.age); // 20
+
+// changing the property value of prototype
+Person.prototype = { age: 50 }
+
+// creating new object
+const person3 = new Person();
+
+console.log(person3.age); // 50
+console.log(person1.age); // 20
+        </pre>
+    </ul>
+    <h4>Q.6 Give an example of inheritance using function constructor</h4>
+    <ul>
+        <li>Inheriting a previously defined constructor function means using the parameters of the previously defined
+            function along with adding some new parameters to the newly defined constructor function. For this, we need
+            to use the call() function which allows us to call a function defined somewhere else in the current context.
+        </li>
+        <pre>Syntax:
+        myFunction.call( this, property1, property2, ... , propertyN )
+    </pre>
+        <pre>
+        function Employee(name, age, gender, id) {
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+            this.id = id;
+        };
+  
+        function Developer(name, age, gender, id, specialization) {
+  
+            // Calling Employee constructor function
+            Employee.call(this, name, age, gender, id);
+  
+            // Adding a new parameter
+            this.specialization = specialization;
+        }
+  
+        // Creating objects
+        let Employee1 = new Employee("Suraj", 28, "Male", 564);
+        let Developer1 = new Developer("Karishma", 31, "Female", 345,
+            "Frontend Developer");
+        console.log(Employee1);
+        console.log(Developer1);
+    </pre>
+    </ul>
+    <h4>Q.7 What are callbacks?</h4>
+    <ul>
+        <li>A callback is a function passed as an argument to another function
+            This technique allows a function to call another function
+            A callback function can run after another function has finished</li>
+            <pre>Example:
+                function myDisplayer(some) {
+                    document.getElementById("demo").innerHTML = some;
+                  }
+                  
+                  function myCalculator(num1, num2, myCallback) {
+                    let sum = num1 + num2;
+                    myCallback(sum);
+                  }
+                  
+                  myCalculator(5, 5, myDisplayer);
+            </pre>
+            <li>In the example above, myDisplayer is the name of a function. <br>
+
+                It is passed to myCalculator() as an argument. <br>
+                
+                When you pass a function as an argument, remember not to use parenthesis.
+        
+                Right: myCalculator(5, 5, myDisplayer);</li>
+    </ul>
+</body>
+
+</html>
