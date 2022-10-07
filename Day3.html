@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day3</title>
+</head>
+
+<body>
+    <h2>Day 3</h2>
+    <h4>Q.1 What is the use of setTimeout</h4>
+    <ul>
+        <li>The setTimeout() method executes a block of code after the specified time. The method executes the code only
+            once.
+        </li>
+        <li>A function to be executed after the timer expires.</li>
+        <li>Syntax</li>
+        <ul>
+            setTimeout(function, milliseconds);
+            <li> Its parameters are:</li>
+            <li>function - a function containing a block of code</li>
+            <li>milliseconds - the time after which the function is executed</li>
+        </ul>
+
+        <pre>
+    The setTimeout() method returns an intervalID, which is a positive integer.
+    Example 1: Display a Text Once After 3 Second
+
+    // program to display a text using setTimeout method
+    function greet() {
+    console.log('Hello world');
+    }
+
+    setTimeout(greet, 3000);
+    console.log('This message is shown first');
+</pre>
+        <li>setTimeout() is an asynchronous function, meaning that the timer function will not pause execution of other
+            functions in the functions stack.</li>
+        <li>The setTimeout() method calls a function after a number of milliseconds. 1 second = 1000 milliseconds.</li>
+        <li>The setTimeout() is executed only once.</li>
+    </ul>
+    <h4>Q.2 What is an event loop and call stack</h4>
+    <ul>
+        <li>The event loop is a constantly running process that monitors both the callback queue and the call stack.
+        </li>
+        <li>If the call stack is not empty, the event loop waits until it is empty and places the next function from the
+            callback queue to the call stack.</li>
+        <li>Call stack</li>
+        <ul>
+            <li>You've probably already heard that JavaScript is single-threaded. But what does this mean?
+                JavaScript can do one single thing at a time because it has only one call stack.</li>
+            <li>Every time a script or function calls a function, it's added to the top of the call stack. Every time
+                the function exits, the interpreter removes it from the call stack.</li>
+            <pre>
+        const addOne = (value) => value + 1;
+        const addTwo = (value) => addOne(value + 1);
+        const addThree = (value) => addTwo(value + 1);
+        const calculation = () => {
+        return addThree(1) + addTwo(2);
+        };
+        calculation();</pre>
+            <li>Every time a function calls another function, it's added to the top of the stack, on top of the calling
+                function.
+                The order in which the stack processes each function call follows the LIFO principle (Last In, First
+                Out).</li>
+        </ul>
+    </ul>
+    <h4>Q.3 What are arrow functions?</h4>
+    <ul>
+        <li>Arrow function is one of the features introduced in the ES6 version of JavaScript. It allows you to create
+            functions in a cleaner way compared to regular functions.</li>
+        <li>Example</li>
+        <pre>
+        hello = () => {
+            return "Hello World!";
+        } 
+        </pre>
+        <li>Arrow functions allow us to write shorter function syntax:</li>
+    </ul>
+    <h4>Q.4 What is a Temporal Dead Zone?</h4>
+    <ul>
+        <li>The let and const variables are not accessible before they are initialized with some value, and the phase
+            between the starting of the execution of block in which the let or const variable is declared till that
+            variable is being initialized is called Temporal Dead Zone for the variable.</li>
+        <li>Example 1: In this example, we are simply using a javascript code snippet and using the var keyword to see
+            how the memory allocation takes place.</li>
+        <li>Variables defined with let are also hoisted to the top of the block, but not initialized.</li>
+        <pre>
+        console.log(x);
+        var x = 6;
+        console.log(x);
+        </pre>
+    </ul>
+    <h4>Q.5 What is hoisting?</h4>
+    <ul>
+        <li>JavaScript Hoisting refers to the process whereby the interpreter appears to move the declaration of
+            functions, variables or classes to the top of their scope, prior to execution of the code.</li>
+        <li>Hoisting allows functions to be safely used in code before they are declared.</li>
+        <li>In JavaScript, a variable can be declared after it has been used.
+            In other words; a variable can be used before it has been declared.</li>
+        <pre>
+                    x = 5; // Assign 5 to x
+                    var x; // Declare x 
+                </pre>
+    </ul>
+    <h4>Q.6 What is the DOM?</h4>
+    <ul>
+        <li>When a web page is loaded, the browser creates a Document Object Model of the page.
+            The HTML DOM model is constructed as a tree of Objects:</li>
+        <li>The document object is a property of the window object.The document object is accessed with:window.document
+            or just document</li>
+        <li>The W3C Document Object Model (DOM) is a platform and language-neutral interface that allows programs and
+            scripts to dynamically access and update the content, structure, and style of a document.</li>
+            <img src="DOM TREE.gif" alt="" style="width: 800px; height: 400px;">
+    </ul>
+    <h4>Q.7 Difference between undefined vs not defined vs NaN</h4>
+    <ul>
+        <li>In JavaScript, they both are related to memory space and there is a very simple difference between them.
+        </li>
+        <li>Not defined :- If the variable name which is being accessed doesn't exist in memory space then it would be
+            not defined,
+            It works like when we did not declare the variable and try to call that variable.
+        </li>
+        <li>Undefined :- It works like when we declared a variable in the code but did not assign the value before
+            printing the variable value</li>
+        <pre>var a = 5;
+console.log(a);
+console.log(b);</pre>
+        <pre>
+        Output:
+                “Reference Error” with a message of “b is not defined“.
+</pre>
+        <pre>console.log(a);
+    var a = 5;
+    console.log(a);</pre>
+        <pre>
+    Output (In console):
+    undefined
+    5
+            </pre>
+        <li>In JavaScript, NaN is short for "Not-a-Number".</li>
+        <li>In JavaScript, NaN is a number that is not a legal number.The Global NaN property is the same as the
+            Number.NaN property.</li>
+    </ul>
+
+
+
+
+
+
+
+</body>
+
+</html>
