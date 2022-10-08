@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4</title>
+</head>
+
+<body>
+    <h2>Day 4 </h2>
+    <h4>Q.1 How many operators do we have in JS ?</h4>
+    <ul>
+        <li>Arithmetic Operators + , - , / , * , % , ++</li>
+        <li>Comparison Operators == , === , != , !== , >= , <= , < ,> ,</li>
+        <li>Bitwise Operators $ |</li>
+        <li>Logical Operators && , || , !</li>
+        <li>Assignment Operators = , += , -= ,*=</li>
+    </ul>
+    <h4>Q.2 What are pure functions?</h4>
+    <ul>
+        <li>A Pure Function is a function (a block of code) that always returns the same result if the same arguments
+            are passed. It does not depend on any state or data change during a program’s execution. Rather, it only
+            depends on its input arguments.</li>
+        <li> Example
+            <pre>
+const add = (x, y) => x + y;
+add(2, 4); // 6
+</pre>
+        </li>
+    </ul>
+    <h4>Q.3 What is callback hell</h4>
+    <ul>
+        <li>Callback Hell is essentially nested callbacks stacked below one another forming a pyramid structure. Every
+            callback depends/waits for the previous callback, thereby making a pyramid structure that affects the
+            readability and maintainability of the code.</li>
+        <li>
+            <pre>
+                const animateAll = (animate) => {
+                    setTimeout(() => {
+                        console.log("1");
+                        setTimeout(() => {
+                            console.log("2");
+                            setTimeout(() => {
+                                console.log("3");
+                            }, 1000)
+                        }, 1000)
+                    }, 1000)
+                }            
+</pre>
+        </li>
+    </ul>
+    <h4>Q.4 What are promises and why do we need them?</h4>
+    <ul>
+        <li>Promises are used to handle asynchronous operations in JavaScript.</li>
+        <li>They are easy to manage when dealing with multiple asynchronous operations where callbacks can create
+            callback hell leading to unmanageable code.</li>
+        <li>Promises are the ideal choice for handling asynchronous operations in the simplest manner. They can handle
+            multiple asynchronous operations easily and provide better error handling than callbacks and events.</li>
+        <li>In other words also, we may say that, promises are the ideal choice for handling multiple callbacks at the
+            same time, thus avoiding the undesired callback hell situation.</li>
+        <pre>
+                const myPromise = new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                      resolve("foo");
+                    }, 300);
+                  });
+            </pre>
+    </ul>
+    <h4>Q.5 What is promise chaining</h4>
+    <ul>
+        <li>Promise chaining is a syntax that allows you to chain together multiple asynchronous tasks in a specific
+            order.</li>
+        <li>This is great for complex code where one asynchronous task needs to be performed after the completion of a
+            different asynchronous task.</li>
+    </ul>
+    <pre>
+    new Promise(function(resolve, reject) {
+
+        setTimeout(() => resolve(1), 1000); // (*)
+      
+      }).then(function(result) { // (**)
+      
+        alert(result); // 1
+        return result * 2;
+      
+      }).then(function(result) { // (***)
+      
+        alert(result); // 2
+        return result * 2;
+      
+      }).then(function(result) {
+      
+        alert(result); // 4
+        return result * 2;
+      
+      });
+</pre>
+    <h4>Q.6 Give an example of async/await</h4>
+    <ul>
+        <li>Let’s start with the async keyword. It can be placed before a function, like this:</li>
+        <pre>async function f() {
+            return 1;
+          }</pre>
+        <li>The word “async” before a function means one simple thing: a function always returns a promise. Other values
+            are wrapped in a resolved promise automatically.</li>
+        <li>There’s another keyword, await, that works only inside async functions, and it’s pretty cool.</li>
+        <li>The keyword await makes JavaScript wait until that promise settles and returns its result.
+
+            Here’s an example with a promise that resolves in 1 second:</li>
+        <pre>
+                async function f() {
+
+                    let promise = new Promise((resolve, reject) => {
+                      setTimeout(() => resolve("done!"), 1000)
+                    });
+                  
+                    let result = await promise; // wait until the promise resolves (*)
+                  
+                    alert(result); // "done!"
+                  }
+                  
+                  f();
+            </pre>
+    </ul>
+    <h4>Q.7 What is the purpose of async/await keywords?</h4>
+    <ul>
+        <li>The async keyword turns a method into an async method, which allows you to use the await keyword in its body.</li>
+        <li>When the await keyword is applied, it suspends the calling method and yields control back to its caller until the awaited task is complete. await can only be used inside an async method.</li>
+        <li>If a promise resolves normally, then await promise returns the result. But in the case of a rejection, it throws the error, just as if there were a throw statement at that line.</li>
+        <li>In real situations, the promise may take some time before it rejects. In that case there will be a delay before await throws an error.</li>
+        <li>We can catch that error using try..catch, the same way as a regular throw:</li>
+        <pre>
+            async function f() {
+
+                try {
+                  let response = await fetch('http://no-such-url');
+                } catch(err) {
+                  alert(err); // TypeError: failed to fetch
+                }
+              }
+              
+              f();
+        </pre>
+    </ul>
+</body>
+
+</html>
