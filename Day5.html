@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 5</title>
+</head>
+
+<body>
+    <h1>Day 5</h1>
+    <h4>Q.1 What is the for-in loop in JavaScript? Give its syntax</h4>
+    <ul>
+        <li>The for...in loop is used to loop through an object's properties. </li>
+        <li>
+            <pre>Syntax
+The syntax of ‘for..in’ loop is −
+
+        for (key in object) {
+            // code block to be executed
+        }</pre>
+        </li>
+        <li>In each iteration, one property from object is assigned to variablename and this loop continues till all the
+            properties of the object are exhausted.</li>
+        <li>Example:</li>
+        <pre>
+            const person = {fname:"John", lname:"Doe", age:25};
+            let text = "";
+            for (let x in person) {
+            text += person[x];
+            } 
+        </pre>
+    </ul>
+    <h4>Q.2 Explain Local Scope, Block Scope, Functional Scope and Scope Chain in javascript</h4>
+    <ul>
+        <li>Scope determines the accessibility (visibility) of variables.</li>
+        <li>JavaScript has 3 types of scope:
+            Block scope
+            Function scope/Local scope
+            Global scope
+        </li>
+        <ul>
+            <li>Block scope</li>
+            <li>Before ES6 (2015), JavaScript had only Global Scope and Function Scope.
+
+                ES6 introduced two important new JavaScript keywords: let and const.
+
+                These two keywords provide Block Scope in JavaScript.
+
+                Variables declared inside a { } block cannot be accessed from outside the block:</li>
+            <pre>
+                {
+                    let x = 2;
+                }
+                  // x can NOT be used here </pre>
+            <li>Variables declared with the var keyword can NOT have block scope.</li>
+        </ul>
+    </ul>
+    <ul>
+        <li>Function scope/Local scope</li>
+        <ul>
+            <li>Variables declared within a JavaScript function, become LOCAL to the function.</li>
+            <pre>// code here can NOT use carName
+
+    function myFunction() {
+        let carName = "Volvo";
+        // code here CAN use carName
+    }
+                
+    // code here can NOT use carName </pre>
+            <li>
+
+                Local variables have Function Scope:
+
+                They can only be accessed from within the function.
+            </li>
+            <li>Local variables are created when a function starts, and deleted when the function is completed.</li>
+        </ul>
+    </ul>
+    <ul>
+        <li>Global JavaScript Variables</li>
+        <ul>
+            <li>A variable declared outside a function, becomes GLOBAL.</li>
+            <pre>let carName = "Volvo";
+// code here can use carName
+                
+function myFunction() {
+// code here can also use carName
+}</pre>
+            <li>
+
+                A global variable has Global Scope:
+
+                All scripts and functions on a web page can access it.
+            </li>
+            <li>Variables declared Globally (outside any function) have Global Scope.</li>
+            <li>Global variables can be accessed from anywhere in a JavaScript program.
+
+                Variables declared with var, let and const are quite similar when declared outside a block.
+
+                They all have Global Scope:</li>
+        </ul>
+    </ul>
+    <h4>Q.3 What is difference between null and undefined and where to use what?</h4>
+    <ul>
+        <li>Null: It is the intentional absence of the value. It is one of the primitive values of JavaScript.</li>
+        <dl>
+            <dt>Null</dt>
+            <dd>The value null represents the absence of any object value</dd>
+            <dd>It is Primitive value in Javascript</dd>
+        </dl>
+        <li>Undefined: It means the value does not exist in the compiler. It is the global object.</li>
+        <dl>
+            <dt>Undefined</dt>
+            <dd>The undefined property indicates that a variable has not been declared at all.</dd>
+            <dd>It is a global property.</dd>
+        </dl>
+    </ul>
+    <h4>Q.4 what is symbol in javascript</h4>
+    <ul>
+        <li>The JavaScript ES6 introduced a new primitive data type called Symbol. Symbols are immutable (cannot be
+            changed) and are unique. For example,</li>
+        <li>Symbol is a built-in object whose constructor returns a symbol primitive — also called a Symbol value or
+            just a Symbol — that's guaranteed to be unique.</li>
+        <li>You use the Symbol() function to create a Symbol. For example,</li>
+        <pre>const x = Symbol('hey');
+console.log(x); // Symbol(hey)</pre>
+    </ul>
+    <h4>Q.5 Write code to explain map and filter in arrays</h4>
+    <ul>
+        <li>Map, reduce, and filter are all array methods in JavaScript. Each one will iterate over an array and perform
+            a transformation or computation. Each will return a new array based on the result of the function.</li>
+        <li>Map()</li>
+        <dd>The map() method is used for creating a new array from an existing one, applying a function to each one of
+            the elements of the first array.</dd>
+        <li>Syntax:</li>
+        <pre>var new_array = arr.map(function callback(element, index, array) {
+            // Return value for new_array
+        }[, thisArg])</pre>
+        <li>Example:</li>
+        <pre>const numbers = [1, 2, 3, 4];
+const doubled = numbers.map(item => item * 2);
+console.log(doubled); // [2, 4, 6, 8]</pre>
+        <li>Filter()</li>
+        <dd>The filter() method takes each element in an array and it applies a conditional statement against it. If
+            this conditional returns true, the element gets pushed to the output array. If the condition returns false,
+            the element does not get pushed to the output array. </dd>
+        <li>Syntax:</li>
+        <pre>var new_array = arr.filter(function callback(element, index, array) {
+        // Return true or false
+    }[, thisArg])</pre>
+        <li>Example:</li>
+        <pre>const numbers = [1, 2, 3, 4];
+const evens = numbers.filter(item => item % 2 === 0);
+console.log(evens); // [2, 4]</pre>
+        <li>Reduce()</li>
+        <dd>The reduce() method reduces an array of values down to just one value. To get the output value, it runs a
+            reducer function on each element of the array.</dd>
+        <li>Syntax:-</li>
+        <pre>arr.reduce(callback[, initialValue])</pre>
+        <li>Example:-</li>
+        <pre>const numbers = [1, 2, 3, 4];
+const sum = numbers.reduce(function (result, item) {
+    return result + item;
+}, 0);
+console.log(sum); // 10</pre>
+    </ul>
+    <h4>Q.6 Explain passed by value and passed by reference</h4>
+    <ul>
+        <li>Call By Value:</li>
+        <dd>In Pass by value, function is called by directly passing the value of the variable as an argument. So any
+            changes made inside the function does not affect the original value.</dd>
+        <dd>In Pass by value, parameters passed as an arguments create its own copy. So any changes made inside the
+            function is made to the copied value not to the original value .</dd>
+        <pre>
+            let num1 = 70
+            let num2 = num1
+            
+            console.log(num1) // 70
+            console.log(num2) // 70
+            
+            num1 = 40
+            
+            console.log(num1) // 40
+            console.log(num2) // 70
+            </pre>
+        <li>Pass by Reference: </li>
+        <dd>In Pass by Reference, Function is called by directly passing the reference/address of the variable as an
+            argument. So changing the value inside the function also change the original value. In JavaScript array and
+            Object follows pass by reference property.
+
+            In Pass by reference, parameters passed as an arguments does not create its own copy, it refers to the
+            original value so changes made inside function affect the original value. </dd>
+        <pre>
+            let originalObj = {
+                name: "Scaler Academy",
+                rating: 4.5,
+                topic: "JavaScript"
+                };
+                
+                function demo(tmpObj) { 
+                  tmpObj.rating = 5; 
+                  console.log(tmpObj.rating); 
+                } 
+                
+                console.log(originalObj.rating);    // 4.5
+                demo(originalObj);             // 5
+                console.log(originalObj.rating);    //5
+        </pre>
+    </ul>
+    <h4>Q.7 Please explain Self Invoking Function and its code</h4>
+    <ul>
+        <li>A self-invoking (also called self-executing) function is a nameless (anonymous) function that is invoked
+            immediately after its definition.</li>
+        <li> An anonymous function is enclosed inside a set of parentheses followed by another set of parentheses () ,
+            which does the execution.</li>
+            <pre>(function(){
+                console.log(Math.PI);
+            })();</pre>
+    </ul>
+</body>
+
+</html>
