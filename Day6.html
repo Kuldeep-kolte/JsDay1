@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 6</title>
+</head>
+
+<body onload="showTime()">
+    <h1>Day 6</h1>
+    <h4>Q.1 Create a button , on click of which new Heading tag h1 should be added with text as "MERN stack" on the
+        screen above button</h4>
+
+    <div id="div1"></div>
+    <button onclick="changetext()">New h1 Tag</button>
+    <h4>Q.2 Write code to get 1st H1 element from a webpage using DOM</h4>
+    <h1 id="demo"></h1>
+    <button onclick="getfirsth1()">get 1st h1</button>
+    <h4>Q.3 Write code to implement timer clock using JS -- display HH:MM:SS -- the time should keep updating every
+        second</h4>
+    <h1 id="time"></h1>
+    <h4>Q.4 Create an HTML page having content as Hello world and a button named Replace Text. When user will click on
+        this button page content should be changed to "Welcome to Elevation academy"</h4>
+    <h1 id="h2">Hello World</h1>
+    <button onclick="changetext1()">Replace Text</button>
+    <h4>Q.5 Create an HTML page having content as Hello world and a button named "Hide Text." When user will click on
+        this button hide the "Hello World" text</h4>
+    <h1 id="hidetext">Hello World</h1>
+    <button onclick="hideText()">Hide Text</button>
+    <h4>Q.6 Given an array of 0's and 1's find out number of 0's</h4>
+    <pre>
+        let arr = [1, 0, 0, 0];
+        let len = arr.length;
+        let count = 0;
+        for (let i = 0; i < len; i++) {
+            if (arr[i] == 0) {
+                count++;
+            }
+        }
+        console.log("Count of zero is : " + count);
+    </pre>
+    <h4>Q.7 Given an array find out total no. of odd and even nos.</h4>
+    <pre>
+        let arr = [1, 2, 3, 4, 5];
+        let even_count = 0;
+        let odd_count = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] % 2 === 0) {
+                even_count++;
+            }
+            else {
+                odd_count++;
+            }
+
+        }
+        console.log("Total Even No. are " + even_count);
+        console.log("Total Odd No. are " + odd_count);
+    </pre>
+    <h4>Q.8 Given a string find out number of vowels</h4>
+    <pre>
+        let word = "kuldeepKolate";
+        const reg = /[aeiou]/gi;
+        let char = word.match(reg);
+        console.log("Total no. of Vowels are :) " + char.length);
+    </pre>
+    <h4>Q.9 Write a code to create two objects with 2 properties each, one will be string and other will be an array. <br>
+        Create a function to check if all the elements of the arrays in both the objects are same</h4>
+    <pre>
+        const obj1 = {
+            name: 'Ram',
+            age: 21,
+            hobbies: ['Cricket', 'Swimming']
+        };
+
+        const obj2 = {
+            name: 'Ram',
+            age: 21,
+            hobbies: ['Cricket', 'Swimming']
+        };
+        const haveSameData = function (obj1, obj2) {
+            const obj1Length = Object.keys(obj1).length;
+            const obj2Length = Object.keys(obj2).length;
+
+            if (obj1Length === obj2Length) {
+                return Object.keys(obj1).every(
+                    key => obj2.hasOwnProperty(key)
+                        && obj2[key] === obj1[key]);
+            }
+            return false;
+        }
+        document.write(haveSameData(obj1, obj2));
+    </pre>
+
+</body>
+<script>
+    function changetext() {
+
+        const para = document.createElement("h1");
+        para.innerText = "MERN stack"
+        const element = document.getElementById("div1");
+        element.appendChild(para);
+    }
+    function getfirsth1() {
+        let a = document.getElementsByTagName("h1")[0];
+        let b = document.getElementById("demo");
+        b.innerText = a.innerHTML;
+        console.log(a.innerText);
+    }
+    function showTime() {
+        let d = new Date();
+        let h = d.getHours();
+        let m = d.getMinutes();
+        let s = d.getSeconds();
+        let session = "AM";
+
+        //console.log(h);
+
+        if (h > 12) {
+            session = "PM";
+        }
+        if (h > 12) {
+            h = h - 12;
+        }
+
+
+        h = h < 10 ? "0" + h : h;
+        m = m < 10 ? "0" + m : m;
+        s = s < 10 ? "0" + s : s;
+        let time = h + ":" + m + ":" + s + " " + session;
+        document.getElementById("time").innerText = time;
+        setTimeout(showTime, 1000);
+    }
+    function changetext1() {
+        let gettext = document.getElementById("h2");
+        gettext.innerText = "Welcome to Elevation academy";
+    }
+    function hideText() {
+        let a = document.getElementById("hidetext");
+        a.style.display = "none";
+
+    }
+
+</script>
+
+</html>
